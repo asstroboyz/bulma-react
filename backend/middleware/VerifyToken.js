@@ -1,19 +1,28 @@
 import jwt from "jsonwebtoken";
 
-export const verifyToken = (req, res, next) => {
+// Middleware untuk memverifikasi akses token
+export const verifyToken = async (req, res, next) => {
+    // Ambil token dari header Authorization
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
-    if (token == null) {
-        return res.sendStatus(401); 
+    // Jika token tidak ditemukan
+    if (!token) {
+        console.log("Token tidak ditemukan");
+        return res.status(401).json({ message: "Unauthorized: Token tidak ditemukan" });
     }
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-        if (err) {
-            return res.sendStatus(403); 
-        }
+    try {
+        // Verifikasi token menggunakan secret
+        const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
-        req.email = decoded.email; 
+        // Menyimpan informasi pengguna (email) pada req
+        req.email = decoded.email;
+
+        // Melanjutkan ke middleware berikutnya
         next();
-    });
+    } catch (err) {
+        console.log("Token tidak valid", err);
+        return res.status(403).json({ message: "Forbidden: Token tidak valid" });
+    }
 };
