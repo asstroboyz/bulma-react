@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS untuk SweetAlert2 */
+.swal2-popup {
+  background-color: #f0f0f0; /* Ganti dengan warna latar belakang yang diinginkan */
+  border-radius: 10px; /* Menambahkan border radius */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Memberikan efek bayangan */
+}
+
+.swal2-title {
+  font-size: 1.5rem; /* Ukuran font judul */
+  color: #333; /* Warna teks judul */
+}
+
+.swal2-content {
+  font-size: 1rem; /* Ukuran font konten */
+  color: #555; /* Warna teks konten */
+}
+
+.swal2-confirm, .swal2-cancel {
+  background-color: #3498db; /* Warna tombol konfirmasi */
+  color: white; /* Warna teks tombol */
+  border-radius: 5px; /* Radius sudut tombol */
+}
+
+.swal2-confirm:hover, .swal2-cancel:hover {
+  background-color: #2980b9; /* Warna tombol saat hover */
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #2ecc71; /* Warna tombol "OK" */
+}
+
+.swal2-styled.swal2-cancel {
+  background-color: #e74c3c; /* Warna tombol "Cancel" */
+}
