@@ -55,7 +55,7 @@ const Navbar = () => {
 
                 {/* Right Section - Logout Button */}
                 <div className="navbar-end">
-                <Button color="error" onClick={showLogoutConfirmation}>Logout</Button>
+                <a className='btn btn-ghost' color="error" onClick={showLogoutConfirmation}>Logout</a>
                 </div>
             </div>
           

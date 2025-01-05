@@ -7,24 +7,24 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
-      const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
-      const Auth = async (e) => {
+    const Auth = async (e) => {
         e.preventDefault();
-        
-       
+
+
 
         try {
-  
+
             await axios.post('http://localhost:5180/login', {
-           
+
                 email,
                 password,
-             
+
             });
 
             // Navigasi ke halaman utama setelah registrasi berhasil
-            navigate('/dashboard'); 
+            navigate('/dashboard');
 
             // Reset input fields
             // setName('');
@@ -43,50 +43,42 @@ const Login = () => {
         }
     }
     return (
-        <div>
-            <section className="hero has-background-light is-fullheight is-fullwidth">
-                <div className="hero-body">
-                    <div className="container">
-                        <div className="columns is-centered">
-                            <div className="column is-4-desktop">
-                       
-                                <form onSubmit={Auth} className="box">
-                                    <h1 className="title has-text-centered">Login</h1>
-                                    <p className='has-text-centered'>{msg}</p>
-                                    <div className="field">
-                                        <label className="label">Email</label>
-                                        <div className="control has-icons-left">
-                                            <input type="text" className="input" placeholder="Username / email"
-                                            value={email} onChange={(e)=> setEmail(e.target.value)}
-                                            />
-                                            <span className="icon is-small is-left">
-                                                <i className="fas fa-envelope"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="field">
-                                        <label className="label">Password</label>
-                                        <div className="control has-icons-left">
-                                            <input type="password" className="input" placeholder="*****" 
-                                               value={password} onChange={(e)=> setPassword(e.target.value)}/>
-                                            <span className="icon is-small is-left">
-                                                <i className="fas fa-lock"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="field">
-                                        <button className="button is-success is-fullwidth">Login</button>
-                                    </div>
-                                    <div className="field has-text-centered">
-                                        <button className="button is-text">Forgot Password?</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div className="flex justify-center items-center h-screen bg-base-200">
+        <div className="card w-96 bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title text-center">Login</h2>
+            <p className="text-center text-red-500">{msg}</p>
+            <form onSubmit={Auth}>
+              <div className="form-control">
+                <label className="label">Email</label>
+                <input
+                  type="email"
+                  className="input input-bordered"
+                  placeholder="Your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-control mt-4">
+                <label className="label">Password</label>
+                <input
+                  type="password"
+                  className="input input-bordered"
+                  placeholder="Your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn btn-primary">Login</button>
+              </div>
+              <div className="mt-4 text-center">
+                <button className="btn btn-link">Forgot Password?</button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     );
 };
 
