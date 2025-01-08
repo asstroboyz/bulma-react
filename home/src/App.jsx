@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/contexts/theme-context";
 import Layout from "@/routes/layout";
 import DashboardPage from "@/routes/dashboard/page";
 import Login from "@/routes/auth/login";
+import Register from "@/routes/auth/register";
 
 function App() {
     const router = createBrowserRouter([
@@ -17,12 +18,13 @@ function App() {
                     element: <Login />,
                 },
                 {
-                    path: "dashboard",
-                    element: <DashboardPage />,
+                    path: "register",
+                    element: <Register />,
                 },
+               
                 {
-                    path: "analytics",
-                    element: <h1 className="title">Analytics</h1>,
+                    path: "home",
+                    element: <DashboardPage />,
                 },
                 {
                     path: "reports",

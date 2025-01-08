@@ -10,7 +10,12 @@ export const navbarLinks = [
             {
                 label: "Dashboard",
                 icon: Home,
-                path: "/",
+                path: "/home",
+            },
+            {
+                label: "Register",
+                icon: Home,
+                path: "/register",
             },
             {
                 label: "Analytics",
