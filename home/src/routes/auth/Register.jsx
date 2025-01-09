@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Menggunakan useNavigate untuk navigasi
 
 const Register = () => {
@@ -12,7 +12,7 @@ const Register = () => {
 
     const Register = async (e) => {
         e.preventDefault();
-        
+
         // Validasi sederhana untuk memastikan password dan konfirmasi password cocok
         if (password !== confPassword) {
             alert("Passwords do not match");
@@ -27,11 +27,8 @@ const Register = () => {
                 password,
                 confPassword
             });
+            navigate('/');
 
-            // Navigasi ke halaman utama setelah registrasi berhasil
-            navigate('/'); 
-
-            // Reset input fields
             setName('');
             setEmail('');
             setPassword('');
@@ -47,70 +44,98 @@ const Register = () => {
             }
         }
     }
-
+    const goToLogin = () => {
+        navigate('/');
+    };
     return (
         <div>
-            <section className="hero has-background-light is-fullheight is-fullwidth">
-                <div className="hero-body">
-                    <div className="container">
-                        <div className="columns is-centered">
-                            <div className="column is-4-desktop">
-                                <p>{msg}</p>
-                                <form onSubmit={Register} className="box">
-                                    <h1 className="title has-text-centered">Register</h1>
-                                    <div className="field">
-                                        <label className="label">Name</label>
-                                        <div className="control has-icons-left">
-                                            <input type="text" className="input" placeholder="Name"
-                                                value={name} onChange={(e) => setName(e.target.value)} />
-                                            <span className="icon is-small is-left">
-                                                <i className="fas fa-user"></i>
-                                            </span>
-                                        </div>
+            <section className="hero bg-gray-100 min-h-screen flex items-center justify-center">
+                <div className="container max-w-md">
+                    <div className="flex justify-center">
+                        <div className="w-full max-w-lg p-8 bg-white shadow-lg rounded-lg">
+                            <p className="text-red-500 text-center">{msg}</p>
+                            <form onSubmit={Register}>
+                                <h1 className="text-2xl font-semibold text-center mb-8">Register</h1>
+
+                                {/* Name */}
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">Name</label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="text"
+                                            className="input input-bordered w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            placeholder="Name"
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
                                     </div>
-                                    <div className="field">
-                                        <label className="label">Email</label>
-                                        <div className="control has-icons-left">
-                                            <input type="text" className="input" placeholder="Username / email"
-                                                value={email} onChange={(e) => setEmail(e.target.value)} />
-                                            <span className="icon is-small is-left">
-                                                <i className="fas fa-envelope"></i>
-                                            </span>
-                                        </div>
+                                </div>
+
+                                {/* Email */}
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">Email</label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="text"
+                                            className="input input-bordered w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            placeholder="Username / email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
                                     </div>
-                                    <div className="field">
-                                        <label className="label">Password</label>
-                                        <div className="control has-icons-left">
-                                            <input type="password" className="input" placeholder="*****"
-                                                value={password} onChange={(e) => setPassword(e.target.value)} />
-                                            <span className="icon is-small is-left">
-                                                <i className="fas fa-lock"></i>
-                                            </span>
-                                        </div>
+                                </div>
+
+                                {/* Password */}
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">Password</label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="password"
+                                            className="input input-bordered w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            placeholder="*****"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
                                     </div>
-                                    <div className="field">
-                                        <label className="label">Confirm Password</label>
-                                        <div className="control has-icons-left">
-                                            <input type="password" className="input" placeholder="*****"
-                                                value={confPassword} onChange={(e) => setConfPassword(e.target.value)} />
-                                            <span className="icon is-small is-left">
-                                                <i className="fas fa-lock"></i>
-                                            </span>
-                                        </div>
+                                </div>
+
+                                {/* Confirm Password */}
+                                <div className="mb-6">
+                                    <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="password"
+                                            className="input input-bordered w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            placeholder="*****"
+                                            value={confPassword}
+                                            onChange={(e) => setConfPassword(e.target.value)}
+                                        />
                                     </div>
-                                    <div className="field">
-                                        <button className="button is-success is-fullwidth">Register</button>
-                                    </div>
-                                    <div className="field has-text-centered">
-                                        <button className="button is-text">Forgot Password?</button>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+
+                                {/* Submit Button */}
+                                <div className="mb-6">
+                                    <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                                        Register
+                                    </button>
+                                </div>
+
+                                {/* Forgot Password Link */}
+                                <div className="text-center">
+                                    <button className="text-blue-500 hover:underline">Forgot Password?</button>
+                                </div>
+                                <div className="mt-6 text-center">
+                                    <button className="btn btn-link" onClick={goToLogin}>
+                                        Dont have an account? Register
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
+
     );
 };
 

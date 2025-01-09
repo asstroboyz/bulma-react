@@ -12,11 +12,11 @@ export const navbarLinks = [
                 icon: Home,
                 path: "/home",
             },
-            {
-                label: "Register",
-                icon: Home,
-                path: "/register",
-            },
+            // {
+            //     label: "Register",
+            //     icon: Home,
+            //     path: "/register",
+            // },
             {
                 label: "Analytics",
                 icon: ChartColumn,
